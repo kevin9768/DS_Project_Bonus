@@ -18,15 +18,21 @@ int findidx(string &s){
     return -1;
 }
 
-int main(){
+int main(int argc, char* argv[]){
+    char in[30];
+    strcpy(in, argv[1]);
+    strcat(in, "/tp.data");
+    ifstream inFile;
+    inFile.open(in);
+
     //init graph presenting by adjmat
     int total_cities, total_edges, total_time, starting_time;
-    cin >> total_cities >> total_edges >> total_time >> starting_time;
+    inFile >> total_cities >> total_edges >> total_time >> starting_time;
     //init vector of cities
     for(int i=0; i<total_cities; i++){
         string n;
         int h,o,c;
-        cin >> n >> h >> o >> c;
+        inFile >> n >> h >> o >> c;
         City cur(n,h,o,c);
         cities.push_back(cur);
     }
@@ -38,9 +44,9 @@ int main(){
     //build adjmat with edges
     for(int i=0; i<total_edges; i++){
         string a,b;
-        cin >> a >> b;
+        inFile >> a >> b;
         int x,y,dist;
-        cin >> dist;
+        inFile >> dist;
         x = findidx(a);
         y = findidx(b);
         adjmat[x][y] = dist;
