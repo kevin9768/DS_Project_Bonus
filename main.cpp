@@ -46,4 +46,7 @@ int main(){
         adjmat[x][y] = dist;
         adjmat[y][x] = dist;
     }
+    //store happiness idx for each node in adjmat[x][x]
+    for(int i=0; i<total_cities; i++)
+        adjmat[i][i] = cities.at(i).happiness;
 }
